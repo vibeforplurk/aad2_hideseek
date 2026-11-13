@@ -1,0 +1,104 @@
+/* 暮影領地捉迷藏｜基礎樣式 */
+:root {
+  --bg: #111916;
+  --bg-deep: #0c1311;
+  --surface: #1a2621;
+  --surface-2: #20302a;
+  --surface-3: #26372f;
+  --line: rgba(233, 226, 206, 0.12);
+  --line-strong: rgba(233, 226, 206, 0.22);
+  --text: #ece6d6;
+  --text-soft: #d4cdbb;
+  --muted: #97a299;
+  --gold: #c9a227;
+  --gold-soft: rgba(201, 162, 39, 0.14);
+  --green: #8ab79b;
+  --teal: #79ada8;
+  --rose: #cf8f98;
+  --danger: #cf6b63;
+  --ok: #7fb68d;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-body: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", "Heiti TC", sans-serif;
+  --font-display: "Noto Serif TC", "Songti TC", "Microsoft JhengHei", serif;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(201, 162, 39, 0.10), transparent 60%),
+    radial-gradient(900px 500px at 0% 20%, rgba(80, 130, 115, 0.14), transparent 65%),
+    linear-gradient(160deg, #131d19 0%, #0e1513 55%, #0b110f 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+p { margin: 0; }
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button { cursor: pointer; }
+
+a { color: var(--gold); }
+
+::selection { background: rgba(201, 162, 39, 0.35); color: #fff8e7; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(233, 226, 206, 0.16); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(233, 226, 206, 0.28); }
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.tiny { font-size: 12px; }
+.gold { color: var(--gold); }
+.ok { color: var(--ok); }
+.danger { color: var(--danger); }
+.mono { font-family: "Cascadia Code", "Consolas", monospace; }
+.hidden { display: none !important; }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; align-items: center; gap: 10px; }
+.row-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.spacer { flex: 1; }
+.divider { height: 1px; background: var(--line); border: 0; margin: 14px 0; }
+.nowrap { white-space: nowrap; }
+.text-right { text-align: right; }
+.w-full { width: 100%; }

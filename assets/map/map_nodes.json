@@ -1,0 +1,186 @@
+{
+  "image": {
+    "file": "map.png",
+    "width": 1717,
+    "height": 961
+  },
+  "coordinate_system": {
+    "origin": "top-left",
+    "x_axis": "right",
+    "y_axis": "down",
+    "point_reference": "circle center",
+    "units": "pixels"
+  },
+  "movement": {
+    "node_count": 20,
+    "numbering": "clockwise",
+    "start_node": 1
+  },
+  "nodes": [
+    {
+      "id": 1,
+      "x": 576.5,
+      "y": 81.5,
+      "name": "領地接待廳",
+      "type": "facility",
+      "visual": "large_green"
+    },
+    {
+      "id": 2,
+      "x": 778.5,
+      "y": 88.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 3,
+      "x": 964.5,
+      "y": 99.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 4,
+      "x": 1141.5,
+      "y": 181.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 5,
+      "x": 1279.5,
+      "y": 306.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 6,
+      "x": 1449.5,
+      "y": 357.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 7,
+      "x": 1615.5,
+      "y": 450.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 8,
+      "x": 1651.5,
+      "y": 640.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 9,
+      "x": 1545.5,
+      "y": 822.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 10,
+      "x": 1351.5,
+      "y": 879.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 11,
+      "x": 1176.5,
+      "y": 840.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 12,
+      "x": 997.5,
+      "y": 834.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 13,
+      "x": 822.5,
+      "y": 837.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 14,
+      "x": 643.5,
+      "y": 795.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 15,
+      "x": 456.5,
+      "y": 702.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 16,
+      "x": 247.5,
+      "y": 738.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 17,
+      "x": 69.5,
+      "y": 608.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 18,
+      "x": 63.5,
+      "y": 393.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    },
+    {
+      "id": 19,
+      "x": 211.5,
+      "y": 240.5,
+      "name": "",
+      "type": "normal",
+      "visual": "teal"
+    },
+    {
+      "id": 20,
+      "x": 397.5,
+      "y": 165.5,
+      "name": "",
+      "type": "normal",
+      "visual": "yellow"
+    }
+  ],
+  "notes": [
+    "Coordinates are image-pixel estimates from the uploaded map image.",
+    "Verify node 1 and any marker positions visually before using them for precise overlays.",
+    "The visual field is descriptive only; game rules should be stored separately."
+  ]
+}

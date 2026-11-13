@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>暮影領地捉迷藏｜主持人工作台</title>
+  <meta name="description" content="《暮影領地捉迷藏》Plurk TRPG 主持人輔助工具：地圖、移動、事件判定與文字輸出。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231a2621'/%3E%3Cpath d='M21 6a11 11 0 1 0 5 18A9 9 0 0 1 21 6z' fill='%23c9a227'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">🌙</span>
+        <div class="brand-text">
+          <h1>暮影領地捉迷藏</h1>
+          <p>主持人工作台</p>
+        </div>
+      </div>
+      <nav class="topnav" aria-label="主要功能">
+        <button type="button" class="nav-btn is-active" data-nav="console">控制台</button>
+        <button type="button" class="nav-btn" data-nav="setup">遊戲設定</button>
+        <button type="button" class="nav-btn" data-nav="text">文字輸出</button>
+        <button type="button" class="nav-btn" data-nav="save">存檔與紀錄</button>
+      </nav>
+      <div class="topbar-status">
+        <span class="save-indicator"><span class="dot" id="saveDot"></span><span id="saveStatus">尚未建立遊戲</span></span>
+        <button type="button" class="btn btn-ghost btn-sm" id="globalUndoBtn" title="撤銷上一個操作">↶ 撤銷</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- 控制台 -->
+      <section class="view is-active" id="view-console" data-view="console">
+        <div class="console-grid">
+          <aside class="panel info-panel" id="infoPanel" aria-label="遊戲資訊"></aside>
+
+          <section class="panel map-panel" aria-label="遊戲地圖">
+            <div class="panel-head map-head">
+              <div>
+                <p class="eyebrow">Territory Map</p>
+                <h2>領地地圖</h2>
+                <p class="muted" id="mapSubtitle">20 格環狀地圖</p>
+              </div>
+              <div class="segmented" id="mapModeSwitch" role="group" aria-label="地圖顯示模式">
+                <button type="button" data-map-mode="status" class="is-active">狀態地圖</button>
+                <button type="button" data-map-mode="movement">移動預覽</button>
+              </div>
+            </div>
+            <div class="map-stage" id="mapStage"></div>
+            <div class="map-legend">
+              <span><i class="legend-dot hider"></i>躲藏者</span>
+              <span><i class="legend-dot seeker"></i>追捕者</span>
+              <span><i class="legend-dash"></i>移動路徑</span>
+              <span><i class="legend-ring"></i>設施格</span>
+            </div>
+            <div class="map-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="exportPreviewBtn">預覽匯出圖片</button>
+              <button type="button" class="btn btn-primary btn-sm" id="exportPngBtn">下載 PNG</button>
+              <span class="map-hint" id="mapHint">點擊格位可手動移動目前角色</span>
+            </div>
+          </section>
+
+          <aside class="panel action-panel" id="actionPanel" aria-label="操作面板"></aside>
+        </div>
+      </section>
+
+      <!-- 遊戲設定 -->
+      <section class="view" id="view-setup" data-view="setup">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Game Setup</p>
+            <h2>遊戲設定與手動接續</h2>
+            <p class="muted">建立新遊戲、調整角色位置，或直接輸入目前狀態接續未完的遊戲。</p>
+          </div>
+        </div>
+        <div class="two-column" id="setupContent"></div>
+      </section>
+
+      <!-- 文字輸出 -->
+      <section class="view" id="view-text" data-view="text">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Plurk Output</p>
+            <h2>文字輸出</h2>
+            <p class="muted">固定標準模板與 Plurk 擲骰語法；產出的文字可直接修改後複製。</p>
+          </div>
+        </div>
+        <div id="textContent"></div>
+      </section>
+
+      <!-- 存檔與紀錄 -->
+      <section class="view" id="view-save" data-view="save">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Saves &amp; History</p>
+            <h2>存檔與操作紀錄</h2>
+            <p class="muted">自動暫存於瀏覽器；重要進度可建立具名存檔或匯出 JSON。</p>
+          </div>
+          <div class="page-head-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="gameExportBtn">匯出遊戲 JSON</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="gameImportBtn">匯入遊戲 JSON</button>
+          </div>
+        </div>
+        <div id="saveContent"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-root" id="modalRoot" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h2 id="modalTitle">標題</h2>
+        <button type="button" class="modal-close" data-modal-close aria-label="關閉">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer" id="modalFooter"></div>
+    </div>
+  </div>
+
+  <div class="toast-root" id="toastRoot" aria-live="polite"></div>
+  <input type="file" id="hiddenFileInput" accept="application/json,.json" hidden>
+
+  <script src="assets/map/map_data.js"></script>
+  <script src="js/data/map.js"></script>
+  <script src="js/data/text_templates.js"></script>
+  <script src="js/data/facilities.js"></script>
+  <script src="js/data/game_modes.js"></script>
+  <script src="js/core/game_state.js"></script>
+  <script src="js/core/movement.js"></script>
+  <script src="js/core/judgment.js"></script>
+  <script src="js/core/turn_manager.js"></script>
+  <script src="js/core/game_engine.js"></script>
+  <script src="js/features/save_manager.js"></script>
+  <script src="js/features/history_manager.js"></script>
+  <script src="js/features/dice_input.js"></script>
+  <script src="js/features/text_generator.js"></script>
+  <script src="js/features/event_generator.js"></script>
+  <script src="js/features/map_renderer.js"></script>
+  <script src="js/features/map_export.js"></script>
+  <script src="js/features/console.js"></script>
+  <script src="js/features/setup.js"></script>
+  <script src="js/features/text_view.js"></script>
+  <script src="js/features/save_view.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

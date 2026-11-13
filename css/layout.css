@@ -1,0 +1,154 @@
+/* 暮影領地捉迷藏｜版面 */
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 12px 26px;
+  background: rgba(11, 17, 15, 0.86);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: radial-gradient(circle at 32% 28%, rgba(201, 162, 39, 0.35), rgba(201, 162, 39, 0.06) 65%);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  font-size: 22px;
+}
+.brand h1 { font-size: 18px; letter-spacing: 0.06em; }
+.brand p { font-size: 10px; letter-spacing: 0.28em; color: var(--muted); margin-top: 2px; }
+
+.topnav { display: flex; align-items: center; gap: 3px; flex: 1; justify-content: center; flex-wrap: wrap; }
+.nav-btn {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.nav-btn:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+.nav-btn.is-active {
+  color: #16201b;
+  background: linear-gradient(160deg, #d8b448, var(--gold));
+  border-color: rgba(255, 244, 206, 0.5);
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(201, 162, 39, 0.22);
+}
+.nav-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 5px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: 1px;
+}
+.nav-btn.is-active .nav-badge { background: rgba(20, 30, 25, 0.22); color: #16201b; }
+
+.topbar-status { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.save-indicator { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04); }
+.dot.is-saved { background: var(--ok); box-shadow: 0 0 0 4px rgba(127, 182, 141, 0.12); }
+.dot.is-unsaved { background: var(--gold); box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.15); }
+
+.main { flex: 1; width: 100%; max-width: 1840px; margin: 0 auto; padding: 22px 26px 42px; }
+
+.view { display: none; }
+.view.is-active { display: block; animation: viewIn 220ms ease; }
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.console-grid {
+  display: grid;
+  grid-template-columns: 296px minmax(0, 1fr) 392px;
+  gap: 18px;
+  align-items: start;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(32, 48, 42, 0.92), rgba(22, 34, 29, 0.94));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.info-panel,
+.action-panel {
+  padding: 18px;
+  max-height: calc(100vh - 118px);
+  overflow-y: auto;
+  position: sticky;
+  top: 82px;
+}
+
+.map-panel { padding: 18px; min-width: 0; }
+
+.panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.panel-head h2 { font-size: 22px; margin-top: 2px; }
+
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { font-size: 28px; margin: 3px 0 4px; }
+.page-head-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.two-column { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.two-column-wide-left { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+
+@media (max-width: 1320px) {
+  .console-grid { grid-template-columns: 280px minmax(0, 1fr) 372px; gap: 14px; }
+  .info-panel, .action-panel { padding: 15px; }
+}
+
+@media (max-width: 1420px) {
+  .console-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .map-panel { grid-column: 1 / -1; grid-row: 1; }
+  .info-panel { grid-column: 1; grid-row: 2; }
+  .action-panel { grid-column: 2; grid-row: 2; }
+  .info-panel, .action-panel { position: static; max-height: none; }
+  .topbar { flex-wrap: wrap; }
+  .topnav { order: 3; flex-basis: 100%; justify-content: flex-start; }
+  .topbar-status { margin-left: auto; }
+}
+
+@media (max-width: 900px) {
+  .main { padding: 16px 14px 32px; }
+  .topbar { padding: 10px 14px; gap: 12px; }
+  .brand h1 { font-size: 16px; }
+  .two-column, .two-column-wide-left { grid-template-columns: minmax(0, 1fr); }
+  .page-head { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 760px) {
+  .console-grid { grid-template-columns: minmax(0, 1fr); }
+  .map-panel { grid-column: 1; grid-row: 1; }
+  .info-panel { grid-column: 1; grid-row: 2; }
+  .action-panel { grid-column: 1; grid-row: 3; }
+  .save-indicator { display: none; }
+  .map-head { flex-direction: column; align-items: stretch; }
+}
