@@ -1,0 +1,21 @@
+# Local database files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Local environment secrets
+.env
+.env.*
+!.env.example
+
+# Temporary and system files
+*.log
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
